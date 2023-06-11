@@ -1,0 +1,10 @@
+.search_logo {
+  margin-right: 1.4rem;
+}
+
+.search_btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: currentColor;
+}

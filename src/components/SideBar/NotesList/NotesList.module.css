@@ -1,0 +1,72 @@
+.note {
+  list-style-type: none;
+}
+
+.note button {
+  padding: 1.2rem 2.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.notes_list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  height: 100%;
+  align-items: center;
+  padding: 0 1.4rem;
+  max-height: 47rem;
+  overflow-y: auto;
+}
+
+.notes_list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notes_list::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.notes_list::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 1.2rem;
+}
+
+.notes_list::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.quick-access-info {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 3.6rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1.2rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.quick-access_icon {
+  font-size: 4.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2.4rem;
+}
+
+.quick-access-info-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+}
+
+.drop_zone {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+}

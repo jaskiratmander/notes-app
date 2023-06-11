@@ -1,0 +1,18 @@
+.loader {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.loader_wrapper {
+  position: relative;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  height: 100vh;
+  grid-template-rows: min-content 1fr;
+  overflow-y: auto;
+}

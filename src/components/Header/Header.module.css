@@ -1,0 +1,110 @@
+.header {
+  height: 6rem;
+  background-color: inherit;
+  grid-column: 1/ -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  color: inherit;
+  position: sticky;
+  z-index: 120;
+}
+
+.logo {
+  margin-right: auto;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 600;
+  color: inherit;
+  font-family: var(--header-logo-font), var(--font-family);
+}
+
+.color-primary {
+  color: rgba(17, 135, 175);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  background-color: rgba(120, 131, 155, 0.2);
+  border-radius: 1.2rem;
+  cursor: pointer;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.profile_text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-left: 0.7rem;
+  margin-right: 0.4rem;
+  color: inherit;
+}
+
+.color-grey {
+  color: #2f2f2f;
+}
+
+.profile_icon {
+  color: rgba(17, 135, 175, 0.877);
+  font-variation-settings: "FILL" 1;
+}
+
+.profile_expand {
+  font-size: 1.8rem;
+  color: inherit;
+}
+
+.search_logo {
+  margin-right: 1.4rem;
+  display: none;
+}
+
+.search_btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: currentColor;
+}
+
+.theme_mode {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 1.6rem;
+}
+
+.mode_icon {
+  font-size: 2.6rem;
+  color: rgba(17, 135, 175, 0.877);
+  font-variation-settings: "FILL" 1;
+}
+
+@media screen and (max-width: 900px) {
+  .search_logo {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .profile_text {
+    display: none;
+  }
+  .profile_expand {
+    display: none;
+  }
+  .profile {
+    background-color: transparent;
+    padding: 0;
+  }
+  .profile_icon {
+    font-size: 3.4rem;
+  }
+}

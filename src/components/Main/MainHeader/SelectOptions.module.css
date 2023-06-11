@@ -1,0 +1,15 @@
+.select_box,
+.select_box option {
+  padding: 0.7rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgb(35 39 47/1);
+  font-family: inherit;
+  background-color: var(--primary-color);
+}
+
+.select_box:focus {
+  outline: none;
+}

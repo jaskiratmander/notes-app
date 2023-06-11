@@ -1,0 +1,52 @@
+.header_btn {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 0.9rem;
+  border-radius: 7px;
+  gap: 4px;
+  cursor: pointer;
+  border: none;
+  color: rgb(35 39 47/1);
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+}
+
+.icon {
+  font-size: 1.8rem;
+  font-variation-settings: "FILL" 1;
+  transform: scale(1.1);
+}
+
+.cta {
+  padding: 0.7rem 1rem;
+  background-color: #087ea4;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  display: none;
+  align-items: center;
+}
+
+.cta_text {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.cta_add {
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .header_btn :not(.icon) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .cta {
+    display: flex;
+    gap: 3px;
+  }
+}

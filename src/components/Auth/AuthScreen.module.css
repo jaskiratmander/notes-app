@@ -1,0 +1,65 @@
+.auth {
+  display: flex;
+  height: 100%;
+  padding: 20rem;
+  gap: 12rem;
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  width: 34rem;
+}
+
+.actions h2 {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.auth_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth_form label {
+  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
+}
+
+.auth_form input {
+  margin-bottom: 1.2rem;
+  border: none;
+  outline: none;
+  padding: 0.8rem;
+  border-radius: 4px;
+}
+
+.auth_form button {
+  align-self: flex-start;
+  margin-top: 2.4rem;
+  border: none;
+  outline: none;
+  padding: 7px 14px;
+  border-radius: 3px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  width: 50%;
+}
+
+.info h1 {
+  font-size: 5.4rem;
+}
+
+.info p {
+  font-size: 1.8rem;
+}
