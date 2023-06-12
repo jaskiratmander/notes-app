@@ -11,25 +11,30 @@ const defaultState = {
 
 export const AuthContext = createContext(defaultState);
 
+const setLocalUser = (user) => {
+  const userJSON = JSON.stringify(user);
+  console.log(userJSON);
+  localStorage.setItem("current-user", userJSON);
+};
+
 const authRequest = async ({ payload, type }) => {
-  try {
-    const url = `https://grumpy-boot-bull.cyclic.app/${type}`;
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    throw new Error(error.message);
-  }
+  const url = `https://grumpy-boot-bull.cyclic.app/${type}`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error);
+  return data;
 };
 
 export const AuthProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
+  const [username, setUsername] = useState(null);
+
   const {
     mutate: loginMutate,
     error: loginError,
@@ -37,8 +42,9 @@ export const AuthProvider = ({ children }) => {
     isSuccess: loginIsSuccess,
   } = useMutation(authRequest, {
     onSuccess: async (res) => {
-      console.log(res);
       setUserId(res._id);
+      setUsername(res.username);
+      setLocalUser({ id: res._id, username: res.username });
     },
   });
 
@@ -49,7 +55,9 @@ export const AuthProvider = ({ children }) => {
     isSuccess: signupIsSuccess,
   } = useMutation(authRequest, {
     onSuccess: async (res) => {
-      setUserId(res.insertedId);
+      setUserId(res.result.insertedId);
+      setUsername(res.username);
+      setLocalUser({ id: res.result.insertedId, username: res.username });
     },
   });
 
@@ -61,21 +69,30 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signupUser = async (email, password) => {
+  const signupUser = async (email, password, username) => {
     try {
-      signupMutate({ payload: { email, password }, type: "signup" });
+      signupMutate({ payload: { email, password, username }, type: "signup" });
     } catch (error) {
       console.log(error.message);
     }
   };
 
+  const logout = () => {
+    setUserId(null);
+    localStorage.removeItem("current-user");
+  };
+
   const value = {
     userId: userId,
+    username: username,
     isSuccess: loginIsSuccess || signupIsSuccess,
     error: loginError || signupError,
     isLoading: loginIsLoading || signupIsLoading,
     loginUser,
     signupUser,
+    logout,
+    setUserId,
+    setUsername,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

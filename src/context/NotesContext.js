@@ -5,8 +5,8 @@ import { AuthContext } from "./AuthContext";
 
 export const NotesContext = createContext();
 
-async function fetchNotes(userId) {
-  console.log(userId);
+async function fetchNotes({ queryKey }) {
+  const [_key, userId] = queryKey;
   try {
     const url = `https://grumpy-boot-bull.cyclic.app/notes/${userId}`;
     const response = await fetch(url, { method: "GET" });
@@ -50,7 +50,6 @@ async function addNoteRequest({ newNote, userId }) {
 async function deleteNoteRequest(noteId) {
   try {
     const url = `https://grumpy-boot-bull.cyclic.app/notes/${noteId}`;
-    console.log(url);
     const response = await fetch(url, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -70,7 +69,9 @@ export const NotesProvider = ({ children }) => {
     error: queryError,
     isLoading,
     refetch,
-  } = useQuery([`RETRIEVE_NOTES_${userId}`, userId], fetchNotes);
+  } = useQuery([`RETRIEVE_NOTES_${userId}`, userId], fetchNotes, {
+    enabled: !!userId,
+  });
 
   const {
     mutate: updateMutate,

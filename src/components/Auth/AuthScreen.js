@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 const AuthScreenActions = ({ mode }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
   const router = useRouter();
   const { loginUser, signupUser, userId } = useContext(AuthContext);
   if (userId) {
@@ -15,13 +17,26 @@ const AuthScreenActions = ({ mode }) => {
   const formSubmitHandler = async (e) => {
     e.preventDefault();
     if (mode === "Login") loginUser(email, password);
-    else signupUser(email, password);
+    else signupUser(email, password, username);
   };
 
   return (
     <div className={styles["actions"]}>
       <h2>{mode}</h2>
       <form className={styles["auth_form"]} onSubmit={formSubmitHandler}>
+        {mode === "Signup" && (
+          <>
+            <label htmlFor="username">Username</label>
+            <input
+              placeholder="Username"
+              type="text"
+              value={username}
+              id="username"
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            ></input>
+          </>
+        )}
         <label htmlFor="Email">Email</label>
         <input
           placeholder="Email"
@@ -47,6 +62,7 @@ const AuthScreenActions = ({ mode }) => {
 };
 
 const AuthScreen = ({ mode }) => {
+  const { isLoading, error, isSuccess } = useContext(AuthContext);
   return (
     <div className={styles["auth"]}>
       <AuthScreenActions mode={mode} />
@@ -72,6 +88,10 @@ const AuthScreen = ({ mode }) => {
             </Link>
           </>
         )}
+        <p>
+          Status: {isLoading && "Loading"} {error && error.message}{" "}
+          {isSuccess && `${mode} successful!`}
+        </p>
       </div>
     </div>
   );

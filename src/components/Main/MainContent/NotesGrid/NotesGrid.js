@@ -25,7 +25,8 @@ const NotesGrid = ({ notes }) => {
 
   return (
     <div className={styles.notes_grid} ref={gridRef}>
-      {notes.map((note) => (
+      {notes.length === 0 && <p>{`No notes exist yet :(`}</p>}
+      {notes?.map((note) => (
         <NoteItem note={note} key={note.noteId} />
       ))}
     </div>
