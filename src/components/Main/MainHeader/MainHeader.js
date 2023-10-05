@@ -56,13 +56,13 @@ const MainHeader = ({
       heading={heading}
       backCb={backToAllNotes}
     >
-      {/* {activeState === "GRID" && (
+      {activeState === "GRID" && (
         <SelectOptions
           onSelect={(selected) => {
             changeActiveState({ active: "GRID", sort: selected });
           }}
         />
-      )} */}
+      )}
       {activeState === "GRID" && (
         <button
           className={styles.cta}

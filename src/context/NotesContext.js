@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
 import { useMutation, useQuery } from "react-query";
 import { changeActiveContext } from "./ActiveStateContext";
-import { AuthContext } from "./AuthContext";
 
 export const NotesContext = createContext();
+const userId = "64865efc5dfd8e0fd4e00b89";
 
 async function fetchNotes({ queryKey }) {
   const [_key, userId] = queryKey;
@@ -63,15 +63,13 @@ async function deleteNoteRequest(noteId) {
 
 export const NotesProvider = ({ children }) => {
   const changeActiveState = useContext(changeActiveContext);
-  const { userId } = useContext(AuthContext);
+  // const { userId } = useContext(AuthContext);
   const {
     data: notes,
     error: queryError,
     isLoading,
     refetch,
-  } = useQuery([`RETRIEVE_NOTES_${userId}`, userId], fetchNotes, {
-    enabled: !!userId,
-  });
+  } = useQuery([`RETRIEVE_NOTES_${userId}`, userId], fetchNotes);
 
   const {
     mutate: updateMutate,

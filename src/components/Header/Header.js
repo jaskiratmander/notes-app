@@ -1,4 +1,3 @@
-import { AuthContext } from "@/context/AuthContext";
 import { themeContext } from "../../context/ThemeContext";
 import styles from "./Header.module.css";
 import SearchWrapper from "./SearchWrapper";
@@ -6,7 +5,7 @@ import { useContext } from "react";
 
 const Header = ({ userName }) => {
   const { mode, toggleMode } = useContext(themeContext);
-  const { logout } = useContext(AuthContext);
+  const logout = () => null;
   return (
     <header className={styles.header}>
       <button
