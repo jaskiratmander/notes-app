@@ -6,7 +6,13 @@ import SelectOptions from "./SelectOptions";
 import styles from "./MainHeader.module.css";
 import { ClipLoader } from "react-spinners";
 
-const MainHeader = ({ activeState, note }) => {
+const MainHeader = ({
+  activeState,
+  note,
+  onEditStart,
+  onEditClose,
+  isEditing,
+}) => {
   const { updateNote, deleteNote, addNote, isAdding, isDeleting, isUpdating } =
     useContext(NotesContext);
   const changeActiveState = useContext(changeActiveContext);
@@ -70,12 +76,9 @@ const MainHeader = ({ activeState, note }) => {
           </span>
         </button>
       )}
-      {activeState === "EDIT" && (
+      {activeState === "NOTE" && isEditing && (
         <>
-          <button
-            className={styles["header_btn"]}
-            onClick={() => handleStateChange("NOTE")}
-          >
+          <button className={styles["header_btn"]} onClick={onEditClose}>
             <span class={`material-symbols-outlined ${styles["icon"]}`}>
               cancel
             </span>
@@ -102,14 +105,9 @@ const MainHeader = ({ activeState, note }) => {
           </button>
         </>
       )}
-      {activeState === "NOTE" && (
+      {activeState === "NOTE" && !isEditing && (
         <>
-          <button
-            className={styles["header_btn"]}
-            onClick={() => {
-              handleStateChange("EDIT");
-            }}
-          >
+          <button className={styles["header_btn"]} onClick={onEditStart}>
             <span className={`material-symbols-outlined ${styles["icon"]}`}>
               edit
             </span>

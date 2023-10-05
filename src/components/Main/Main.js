@@ -12,6 +12,16 @@ const findNote = (notes, id) => {
 
 const Main = ({ notes }) => {
   const { active, selectedNoteId, sort } = useContext(activeStateContext);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditStart = () => {
+    setIsEditing(true);
+  };
+
+  const handleEditClose = () => {
+    setIsEditing(false);
+  };
+
   let initialHeading = "";
   let initialText = "";
 
@@ -51,7 +61,7 @@ const Main = ({ notes }) => {
   } else {
     content = (
       <NoteForm
-        disabled={active === "NOTE"}
+        disabled={!isEditing && active !== "ADD"}
         data={{ heading, text }}
         inputChangeHandler={handleFormDataChange}
       />
@@ -63,6 +73,9 @@ const Main = ({ notes }) => {
       <MainHeader
         activeState={active}
         note={{ heading, text, id: selectedNoteId }}
+        isEditing={isEditing}
+        onEditStart={handleEditStart}
+        onEditClose={handleEditClose}
       />
       <MainContent>{content}</MainContent>
     </main>

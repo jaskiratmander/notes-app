@@ -13,7 +13,6 @@ export const AuthContext = createContext(defaultState);
 
 const setLocalUser = (user) => {
   const userJSON = JSON.stringify(user);
-  console.log(userJSON);
   localStorage.setItem("current-user", userJSON);
 };
 

@@ -14,7 +14,7 @@ const Header = ({ userName }) => {
           mode === "light" ? styles["color-primary"] : ""
         }`}
       >
-        Notefy
+        Ultra Notes
       </button>
       <SearchWrapper />
 
